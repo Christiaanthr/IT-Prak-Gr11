@@ -1,0 +1,31 @@
+unit Task02_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TfrmMainApp = class(TForm)
+    redOutput: TRichEdit;
+    btnEnterName: TButton;
+    btnDisplay: TButton;
+    btnCalories: TButton;
+    btnCalculation: TButton;
+    btnClose: TButton;
+    pnlHeading: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMainApp: TfrmMainApp;
+
+implementation
+
+{$R *.dfm}
+
+end.

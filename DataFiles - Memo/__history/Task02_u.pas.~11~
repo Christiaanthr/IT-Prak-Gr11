@@ -1,0 +1,96 @@
+unit Task02_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TfrmMainApp = class(TForm)
+    redOutput: TRichEdit;
+    btnEnterName: TButton;
+    btnDisplay: TButton;
+    btnCalories: TButton;
+    btnClose: TButton;
+    pnlHeading: TPanel;
+    procedure btnEnterNameClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnCaloriesClick(Sender: TObject);
+    procedure btnDisplayClick(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    sName : String;
+    arrCalories : array[1..5] of integer;
+  end;
+
+var
+  frmMainApp: TfrmMainApp;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmMainApp.FormCreate(Sender: TObject);
+begin
+  pnlHeading.Caption := 'PBH Gym Calories Tracker';
+  pnlHeading.Font.Size := 20;
+
+end;
+
+procedure TfrmMainApp.btnEnterNameClick(Sender: TObject);
+begin
+  redOutput.Lines.Clear;
+
+  sName := Inputbox('PBH Gym','Please enter your name and surname: ','');
+
+  btnCalories.Enabled := True;
+
+end;
+
+procedure TfrmMainApp.btnCaloriesClick(Sender: TObject);
+var
+  a : integer;
+begin
+  for a := 1 to 5 do
+   arrCalories[a] := StrToInt(InputBox('PBH Gym','Please enter day ' + IntToStr(a) + ' valaue: ','0'));
+
+  btnDisplay.Enabled := True;
+
+end;
+
+procedure TfrmMainApp.btnCloseClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TfrmMainApp.btnDisplayClick(Sender: TObject);
+var
+  a, iTotal : integer;
+  rAvg : Real;
+begin
+  redOutput.Lines.Clear;
+  redOutput.Lines.Add('Hello ' + sName);
+  redOutput.Lines.Add('');
+  redOutput.Lines.Add('You have recorded the following info:');
+  redOutput.Lines.Add('');
+
+  iTotal := 0;
+  for a := 1 to 5 do
+   begin
+     iTotal := iTotal + arrCalories[a];
+     redOutput.Lines.Add('Day ' + IntToStr(a) + ': ' + IntToStr(arrCalories[a]));
+   end;
+
+   redOutput.Lines.Add('');
+   redOutput.Lines.Add('Total burned calories is ' + IntToStr(iTotal));
+   redOutput.Lines.Add('');
+
+   rAvg := iTotal / 5;
+   redOutput.Lines.Add('Your average per day was ' + FloatToStrF(rAvg,ffFixed,8,2));
+
+end;
+
+end.

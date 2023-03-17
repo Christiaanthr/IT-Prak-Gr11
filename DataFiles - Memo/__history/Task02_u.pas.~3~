@@ -1,0 +1,45 @@
+unit Task02_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TfrmMainApp = class(TForm)
+    redOutput: TRichEdit;
+    btnEnterName: TButton;
+    btnDisplay: TButton;
+    btnCalories: TButton;
+    btnCalculation: TButton;
+    btnClose: TButton;
+    pnlHeading: TPanel;
+    procedure btnEnterNameClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    sName : String;
+  end;
+
+var
+  frmMainApp: TfrmMainApp;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmMainApp.FormCreate(Sender: TObject);
+begin
+  pnlHeading.Caption := 'PBH Gym Calories Tracker';
+  pnlHeading.Font.Size := 20;
+
+end;
+
+procedure TfrmMainApp.btnEnterNameClick(Sender: TObject);
+begin
+  sName := Inputbox('PBH Gym','Please enter your name and surname: ','');
+end;
+
+end.
